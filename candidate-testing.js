@@ -21,6 +21,7 @@ let questions = [
 
 let correctAnswers = ["Sally Ride", "true", "40", "Trajectory", "3"];
 let candidateAnswers = [];
+let questionNum = 1
 
 
 function askForName() {
@@ -32,8 +33,9 @@ function askForName() {
 function askQuestion() {
   // TODO 1.2b: Ask candidate the question and assign the response as candidateAnswer //
   for (let i = 0; i < questions.length; i++) {
-    candidateAnswers.push(input.question(questions[i]))
-
+    candidateAnswers.push(input.question(`${i + 1}) ${questions[i]}`))
+    console.log(`Your answer: ${candidateAnswers[i]}`)
+    console.log(`Correct answer: ${correctAnswers[i]}\n`)
   }
 }
 
@@ -44,7 +46,6 @@ function gradeQuiz(candidateAnswers) {
   let correct = 0;
   for (let i = 0; i < questions.length; i++) {
   if (correctAnswers[i].toLowerCase() == candidateAnswers[i].toLowerCase()) {
-    console.log(`${correctAnswers[i]} - Thats correct!`)
     correct++
   }
 }
@@ -55,6 +56,9 @@ function gradeQuiz(candidateAnswers) {
   
 
   console.log(`Overall Grade: ${grade}% (${correct} of 5 responses correct)`);
+  if (grade < 80) {
+    console.log('Status: FAILED')
+  } else (console.log('Status: PASSED'))
   return grade;
 }
 
